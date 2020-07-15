@@ -7,9 +7,11 @@ const mainPage = document.querySelector(".main-page");
 const recipePage = document.querySelector(".recipe-page");
 const username = document.querySelector(".username");
 
+let allRecipes = [];
 let cookbook;
 let index;
 let pantry;
+let totalCost;
 let user;
 
 //event listeners
@@ -57,7 +59,10 @@ function generateRandomUser() {
 };
 
 function generateCookbook() {
-  cookbook = new Cookbook(recipeData, ingredientsData);
+  recipeData.forEach(recipe => {
+    allRecipes.push(new Recipe(recipe, ingredientsData))
+  })
+  cookbook = new Cookbook(allRecipes, ingredientsData);
 };
 
 function generatePantry() {
@@ -78,6 +83,14 @@ function determineRecipeToCook() {
 			user.addRecipeToCook(recipe);
 		};
 	});
+};
+
+function determineTotalCost(recipeID) {
+  allRecipes.forEach(recipe => {
+    if (recipe.id === recipeID) {
+      totalCost = (recipe.getTotalCost() / 100).toFixed(2);
+    };
+  });
 };
 
 function deleteFavoriteRecipe() {
@@ -114,6 +127,7 @@ function displayUsername() {
 function displayAllRecipes() {
 	mainPage.innerHTML = ``;
   cookbook.allRecipes.forEach(recipe => {
+    determineTotalCost(recipe.id);
     mainPage.innerHTML += `
     <article class="recipe-card">
       <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
@@ -126,6 +140,7 @@ function displayAllRecipes() {
         </div>
       </section>
       <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
+      <p class="message">This recipe costs $${totalCost}.</p>
     </article>
     `;
   });
@@ -184,7 +199,7 @@ function displayRecipesToCook() {
         </div>
       </section>
       <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
-      <p class="ingredients-message">${pantry.checkIngredients(recipe)}.</p>
+      <p class="message">${pantry.checkIngredients(recipe)}.</p>
     </article>
     `;
   });
