@@ -12,18 +12,18 @@
       <h2 class="username">Username: </h2>
     </header>
     <nav>
-      <button>Home</button>
+      <button class="home">Home</button>
       <section class="banner-icons">
         <img src="../assets/heart.png" class="banner-heart">
       </section>
-      <button>Favorite Recipes</button>
+      <button class="favorite-recipes-button">Favorite Recipes</button>
       <section class="banner-icons">
         <img src="../assets/frying-pan.png" class="banner-frying-pan">
       </section>
-      <button>Recipes to Cook</button>
+      <button class="recipes-to-cook-button">Recipes to Cook</button>
     </nav>
     <section class="page-title">
-      <h3>Recipes:</h3>
+      <h3>Recipes</h3>
       <article>
         <label for="search">Search</label>
         <input type="text" name="search">
@@ -34,27 +34,27 @@
 			<article class="recipe-card">
 				<img class="recipe-image" src="" alt="">
 				<section class="recipe-graphics">
-					<div>
+					<div class="">
 						<input type="image" class="icon heart">
 					</div>
-					<div>
+					<div class="">
 						<input type="image" class="icon frying-pan">
 					</div>
 				</section>
 				<h4>${recipe.name}</h4>
 			</article>
     </section>
-    <section class="recipe-page">
+    <section class="recipe-page hidden">
       <img class="recipe-page-image" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="">
       <h4 class="recipe-page-name">Recipe Name</h4>
       <p class="tags">tag, tag, tag</p>
       <p class="ingredients">ingredient, ingredient, ingredient</p>
       <p class="instructions">instructions</p>
     </section>
-    <section class="favorite-recipes">
+    <section class="favorite-recipes hidden">
       <section></section>
     </section>
-    <section class="recipes-to-cook">
+    <section class="recipes-to-cook hidden">
       <section></section>
     </section>
     <script type="text/javascript" src="../data/users.js"></script>
