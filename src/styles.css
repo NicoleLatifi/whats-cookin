@@ -32,7 +32,7 @@ button {
   height: 2em;
 }
 
-h4 {
+h4, .message {
   padding: 1em;
 }
 
