@@ -1,14 +1,10 @@
 //query selectors
 const body = document.querySelector("body");
-const iconButtonBackground = document.querySelector("div");
-const favoriteRecipesButton = document.querySelector(".favorite-recipes-button");
-const homeButton = document.querySelector(".home")
-const recipesToCookButton = document.querySelector(".recipes-to-cook-button");
 const favoriteRecipesPage = document.querySelector(".favorite-recipes");
-const pageTitle = document.querySelector("h3");
 const recipesToCookPage = document.querySelector(".recipes-to-cook");
+const pageTitle = document.querySelector("h3");
 const mainPage = document.querySelector(".main-page");
-const recipeImage = document.querySelector(".recipe-image");
+const recipePage = document.querySelector(".recipe-page");
 const username = document.querySelector(".username");
 
 let cookbook;
@@ -29,7 +25,6 @@ function loadPage() {
 function clickHandler() {
 	if (event.target.classList.contains("heart")) {
 		determineFavoriteRecipe();
-    // changeButtonColor();
 	} else if (event.target.classList.contains("frying-pan")) {
 		determineRecipeToCook();
   } else if (event.target.classList.contains("favorites-trash")) {
@@ -42,7 +37,9 @@ function clickHandler() {
     displayFavoriteRecipes();
   } else if (event.target.classList.contains("recipes-to-cook-button")) {
     displayRecipesToCook();
-  }
+	} else if (event.target.classList.contains("recipe-name")) {
+		determineRecipeClicked();
+	}
 };
 
 //other functions
@@ -94,6 +91,14 @@ function deleteRecipeToCook() {
   displayRecipesToCook();
 };
 
+function determineRecipeClicked() {
+	cookbook.allRecipes.find(recipe => {
+		if (event.target.classList.contains(recipe.id)) {
+			displayRecipePage(recipe);
+		};
+	});
+};
+
 //DOM manipulation
 function displayUsername() {
   username.innerText = `Username: ${user.name}`;
@@ -113,30 +118,26 @@ function displayAllRecipes() {
           <input type="image" src="../assets/frying-pan.png" class="icon frying-pan ${recipe.id}">
         </div>
       </section>
-      <h4>${recipe.name}</h4>
+      <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
     </article>
     `;
   });
 };
 
-function changeButtonColor() {
-  // console.log(iconButtonBackground)
-  // iconButtonBackground.classList.add("clicked");
-  // console.log(iconButtonBackground.classList)
-};
-
 function displayMainPage() {
   mainPage.classList.remove("hidden");
   favoriteRecipesPage.classList.add("hidden");
-  recipesToCookPage.classList.add("hidden");
-  pageTitle.innerHTML = `Recipes`;
+	recipesToCookPage.classList.add("hidden");
+	recipePage.classList.add("hidden");
+  pageTitle.innerText = "Recipes";
 };
 
 function displayFavoriteRecipes() {
   mainPage.classList.add("hidden");
   recipesToCookPage.classList.add("hidden");
-  favoriteRecipesPage.classList.remove("hidden");
-  pageTitle.innerHTML = `Favorite Recipes`;
+	recipePage.classList.add("hidden");
+	favoriteRecipesPage.classList.remove("hidden");
+  pageTitle.innerText = "Favorite Recipes";
   favoriteRecipesPage.innerHTML = ``;
   user.favoriteRecipes.forEach(recipe => {
     favoriteRecipesPage.innerHTML += `
@@ -150,7 +151,7 @@ function displayFavoriteRecipes() {
           <input type="image" src="../assets/frying-pan.png" class="icon frying-pan ${recipe.id}">
         </div>
       </section>
-      <h4>${recipe.name}</h4>
+      <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
     </article>
     `;
   });
@@ -159,8 +160,9 @@ function displayFavoriteRecipes() {
 function displayRecipesToCook() {
   mainPage.classList.add("hidden");
   favoriteRecipesPage.classList.add("hidden");
-  recipesToCookPage.classList.remove("hidden");
-  pageTitle.innerHTML = `Recipes To Cook`;
+	recipePage.classList.add("hidden");
+	recipesToCookPage.classList.remove("hidden");
+  pageTitle.innerText = "Recipes To Cook";
   recipesToCookPage.innerHTML = ``;
   user.recipesToCook.forEach(recipe => {
     recipesToCookPage.innerHTML += `
@@ -174,8 +176,38 @@ function displayRecipesToCook() {
           <input type="image" src="../assets/trash-icon.png" class="icon to-cook-trash ${recipe.id}">
         </div>
       </section>
-      <h4>${recipe.name}</h4>
+      <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
     </article>
     `;
   });
+};
+
+function displayRecipePage(recipe) {
+	mainPage.classList.add("hidden");
+	favoriteRecipesPage.classList.add("hidden");
+	recipesToCookPage.classList.add("hidden");
+	recipePage.classList.remove("hidden");
+	pageTitle.innerText = "";
+	recipePage.innerHTML = `
+		<img class="recipe-page-image" src="${recipe.image}" alt="${recipe.name}">
+		<h4 class="recipe-page-name">${recipe.name}</h4>
+		<p class="tags">${displayRecipeTags(recipe)}</p>
+		<p class="ingredients">${displayIngredients(recipe)}</p>
+		<p class="instructions">${displayInstructions(recipe)}</p>
+		`
+	};
+
+function displayRecipeTags(recipe) {
+	let tagList = recipe.tags.map(tag => `${tag} <br>`);
+	return tagList.join("");
+};
+
+function displayInstructions(recipe) {
+	let instructions = recipe.instructions.map(instruction => `- ${instruction.instruction} <br>`);
+	return instructions.join("");
+};
+
+function displayIngredients(recipe) {
+	let ingredients = recipe.ingredients.map(ingredient => `- ${ingredient.id}, Quantity: ${ingredient.quantity.amount} ${ingredient.quantity.unit} <br>`);
+	return ingredients.join("");
 };
