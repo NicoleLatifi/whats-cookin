@@ -1,51 +1,32 @@
-# What's Cookin'? Starter Kit 
+# What's Cookin
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
+#### Pair Project from Mon 7/6/2020 - Wed 7/15/2020 in Module 2 at Turing School of Software and Design
 
-## Set Up 
+## About
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
-4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-5. Make sure both members of your team are collaborators on the forked repo.
+- This is a recipe tracking / meal planning application that allows users to browse recipes and plan their shopping trips around them. The user can add recipes to their 'Favorite Recipes' and/or 'Recipes to Cook' page as they browse and then view those pages later.
 
-## Testing 
+## Application Preview
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
+<img src="http://g.recordit.co/YOUhVKGxN8.gif" alt="whats cookin website preview" height=auto width=75%/>
 
-## Linting Your Code 
+## Install/Setup Instructions
 
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+- Fork the repo to your GitHub account
+- Clone down the forked repo using `git clone`
+- Change into the directory and run `npm install`
+- In your terminal, run `open index.html`
+- Bon Appetit!
 
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+## Next Steps
 
+### Additional enhancements could include:
 
-## Data Model
-### Users
-```js
-{
-  "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
-},
-```
+- Display filtered recipes by tag, name or ingredient
+- Display the needed ingredients and cost for a given recipe
+- Display if the user has enough ingredients to cook a recipe
 
-### Recipes
-```js
-{
-  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
-  "instructions": [array of objects with instructions properties and numbered steps],
-  "name": [string],
-  "tags": [array of strings representing info about the recipes]
-}
-```
+## Contributors
 
-### Ingredients
-```js
-{
-  "estimatedCostInCents": [number],
-  "id": [number -- connection to users and recipes],
-  "name": [string]
-}
-```
+- Nicole Latifi: https://github.com/NicoleLatifi
+- Erin Untermeyer: https://github.com/ErinUntermeyer
