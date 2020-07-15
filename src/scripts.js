@@ -8,6 +8,8 @@ const recipePage = document.querySelector(".recipe-page");
 const username = document.querySelector(".username");
 
 let cookbook;
+let index;
+let pantry;
 let user;
 
 //event listeners
@@ -19,6 +21,7 @@ body.addEventListener("click", clickHandler);
 function loadPage() {
   generateRandomUser();
   generateCookbook();
+  generatePantry();
   displayAllRecipes();
 };
 
@@ -48,7 +51,7 @@ function getRandomIndex(array) {
 };
 
 function generateRandomUser() {
-  let index = getRandomIndex(usersData);
+  index = getRandomIndex(usersData);
   user = new User(usersData[index], ingredientsData);
   displayUsername();
 };
@@ -56,6 +59,10 @@ function generateRandomUser() {
 function generateCookbook() {
   cookbook = new Cookbook(recipeData, ingredientsData);
 };
+
+function generatePantry() {
+  pantry = new Pantry(usersData[index]);
+}
 
 function determineFavoriteRecipe() {
 	cookbook.allRecipes.find(recipe => {
@@ -177,6 +184,7 @@ function displayRecipesToCook() {
         </div>
       </section>
       <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
+      <p class="ingredients-message">${pantry.checkIngredients(recipe)}.</p>
     </article>
     `;
   });
