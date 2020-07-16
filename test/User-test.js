@@ -231,54 +231,55 @@ describe('User', () => {
       ]
     }, ingredients);
   });
+
   it('Should be a function', () => {
     expect(User).to.be.a('function');
   });
 
   it('Should be able to favorite a recipe', () => {
-    user.addFavoriteRecipe(recipe1);
+    user.addRecipe(recipe1, user.favoriteRecipes);
 
     expect(user.favoriteRecipes).to.deep.equal([recipe1]);
   });
 
   it('Should be able to remove a favorite recipe', () => {
-    user.addFavoriteRecipe(recipe1);
-    user.removeFavoriteRecipe(recipe1);
+    user.addRecipe(recipe1, user.favoriteRecipes);
+    user.removeRecipe(recipe1, user.favoriteRecipes);
 
     expect(user.favoriteRecipes).to.deep.equal([]);
   });
 
   it('Should not add a duplicate favorite recipe', () => {
-    user.addFavoriteRecipe(recipe1);
-    user.addFavoriteRecipe(recipe1);
+    user.addRecipe(recipe1, user.favoriteRecipes);
+    user.addRecipe(recipe1, user.favoriteRecipes);
 
     expect(user.favoriteRecipes).to.deep.equal([recipe1]);
   });
 
   it('Should be able to add a recipe to cook', () => {
-    user.addRecipeToCook(recipe1);
+    user.addRecipe(recipe1, user.recipesToCook);
 
     expect(user.recipesToCook).to.deep.equal([recipe1]);
   });
 
   it('Should be able to remove a recipe to cook', () => {
-    user.addRecipeToCook(recipe1);
-    user.removeRecipeToCook(recipe1);
+    user.addRecipe(recipe1, user.recipesToCook);
+    user.removeRecipe(recipe1, user.recipesToCook);
 
     expect(user.recipesToCook).to.deep.equal([]);
   });
 
   it('Should not add a duplicate recipe to cook', () => {
-    user.addRecipeToCook(recipe1);
-    user.addRecipeToCook(recipe1);
+    user.addRecipe(recipe1, user.recipesToCook);
+    user.addRecipe(recipe1, user.recipesToCook);
 
     expect(user.recipesToCook).to.deep.equal([recipe1]);
   });
 
   it('Should be able to filter favorite recipes by tag', () => {
-    user.addFavoriteRecipe(recipe1);
-    user.addFavoriteRecipe(recipe2);
-    user.addFavoriteRecipe(recipe3);
+    user.addRecipe(recipe1, user.favoriteRecipes);
+    user.addRecipe(recipe2, user.favoriteRecipes);
+    user.addRecipe(recipe3, user.favoriteRecipes);
 
     expect(user.filterFavoriteRecipesByTag('sauce')).to.deep.equal([recipe1, recipe3]);
   });
@@ -288,43 +289,42 @@ describe('User', () => {
   });
 
   it('Should be able to filter recipes to cook by tag', () => {
-    user.addRecipeToCook(recipe1);
-    user.addRecipeToCook(recipe2);
-    user.addRecipeToCook(recipe3);
+    user.addRecipe(recipe1, user.recipesToCook);
+    user.addRecipe(recipe2, user.recipesToCook);
+    user.addRecipe(recipe3, user.recipesToCook);
 
     expect(user.filterRecipesToCookByTag('sauce')).to.deep.equal([recipe1, recipe3]);
   });
 
   it('Should be able to filter favorite recipes by name, not case sensitive', () => {
-    user.addFavoriteRecipe(recipe1);
-    user.addFavoriteRecipe(recipe2);
-    user.addFavoriteRecipe(recipe3);
+    user.addRecipe(recipe1, user.favoriteRecipes);
+    user.addRecipe(recipe2, user.favoriteRecipes);
+    user.addRecipe(recipe3, user.favoriteRecipes);
 
     expect(user.filterFavoriteRecipesByName('coOKie')).to.deep.equal([recipe1]);
   });
 
   it('Should be able to filter recipes to cook by name, not case sensitive', () => {
-    user.addRecipeToCook(recipe1);
-    user.addRecipeToCook(recipe2);
-    user.addRecipeToCook(recipe3);
+    user.addRecipe(recipe1, user.recipesToCook);
+    user.addRecipe(recipe2, user.recipesToCook);
+    user.addRecipe(recipe3, user.recipesToCook);
 
     expect(user.filterRecipesToCookByName('coOKie')).to.deep.equal([recipe1]);
   });
 
   it('Should be able to filter favorite recipes by ingredient', () => {
-    user.addFavoriteRecipe(recipe1);
-    user.addFavoriteRecipe(recipe2);
-    user.addFavoriteRecipe(recipe3);
+    user.addRecipe(recipe1, user.favoriteRecipes);
+    user.addRecipe(recipe2, user.favoriteRecipes);
+    user.addRecipe(recipe3, user.favoriteRecipes);
 
     expect(user.filterFavoriteRecipesByIngredient('eggs')).to.deep.equal([recipe1]);
   });
 
   it('Should be able to filter recipes to cook by ingredient', () => {
-    user.addRecipeToCook(recipe1);
-    user.addRecipeToCook(recipe2);
-    user.addRecipeToCook(recipe3);
+    user.addRecipe(recipe1, user.recipesToCook);
+    user.addRecipe(recipe2, user.recipesToCook);
+    user.addRecipe(recipe3, user.recipesToCook);
 
     expect(user.filterRecipesToCookByIngredient('eggs')).to.deep.equal([recipe1]);
   });
-
 });

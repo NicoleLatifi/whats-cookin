@@ -124,6 +124,7 @@ describe('Recipe', () => {
       ]
     )
   });
+	
   it('Should instantiate a new recipe', () => {
     expect(recipe1).to.be.an.instanceOf(Recipe);
   });

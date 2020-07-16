@@ -1,13 +1,13 @@
 //query selectors
 const body = document.querySelector("body");
-const favoriteRecipesPage = document.querySelector(".favorite-recipes");
-const recipesToCookPage = document.querySelector(".recipes-to-cook");
+const username = document.querySelector(".username");
+const searchBar = document.querySelector(".search-bar");
+const searchField = document.querySelector(".search");
 const pageTitle = document.querySelector("h3");
 const mainPage = document.querySelector(".main-page");
+const favoriteRecipesPage = document.querySelector(".favorite-recipes");
+const recipesToCookPage = document.querySelector(".recipes-to-cook");
 const recipePage = document.querySelector(".recipe-page");
-const username = document.querySelector(".username");
-const searchField = document.querySelector(".search");
-const searchBar = document.querySelector(".search-bar");
 
 let allRecipes = [];
 let cookbook;
@@ -19,7 +19,6 @@ let user;
 //event listeners
 window.onload = loadPage();
 body.addEventListener("click", clickHandler);
-
 
 //event handlers
 function loadPage() {
@@ -76,7 +75,7 @@ function generatePantry() {
 function determineFavoriteRecipe() {
   cookbook.allRecipes.find(recipe => {
     if (event.target.classList.contains(recipe.id)) {
-      user.addFavoriteRecipe(recipe);
+      user.addRecipe(recipe, user.favoriteRecipes);
     }
   });
 }
@@ -84,7 +83,7 @@ function determineFavoriteRecipe() {
 function determineRecipeToCook() {
   cookbook.allRecipes.find(recipe => {
     if (event.target.classList.contains(recipe.id)) {
-      user.addRecipeToCook(recipe);
+      user.addRecipe(recipe, user.recipesToCook);
     }
   });
 }
@@ -97,10 +96,18 @@ function determineTotalCost(recipeID) {
   });
 }
 
+function determineRecipeClicked() {
+  cookbook.allRecipes.find(recipe => {
+    if (event.target.classList.contains(recipe.id)) {
+      displayRecipePage(recipe);
+    }
+  });
+}
+
 function deleteFavoriteRecipe() {
   user.favoriteRecipes.forEach(recipe => {
     if (event.target.classList.contains(recipe.id)) {
-      user.removeFavoriteRecipe(recipe);
+      user.removeRecipe(recipe, user.favoriteRecipes);
     }
   });
   displayFavoriteRecipes();
@@ -109,18 +116,10 @@ function deleteFavoriteRecipe() {
 function deleteRecipeToCook() {
   user.recipesToCook.forEach(recipe => {
     if (event.target.classList.contains(recipe.id)) {
-      user.removeRecipeToCook(recipe);
+      user.removeRecipe(recipe, user.recipesToCook);
     }
   });
   displayRecipesToCook();
-}
-
-function determineRecipeClicked() {
-  cookbook.allRecipes.find(recipe => {
-    if (event.target.classList.contains(recipe.id)) {
-      displayRecipePage(recipe);
-    }
-  });
 }
 
 function getSearchResults() {
@@ -237,14 +236,14 @@ function displayRecipeTags(recipe) {
   return tagList.join("");
 }
 
-function displayInstructions(recipe) {
-  let instructions = recipe.instructions.map(instruction => `- ${instruction.instruction} <br>`);
-  return instructions.join("");
-}
-
 function displayIngredients(recipe) {
   let ingredients = recipe.ingredients.map(ingredient => `- ${ingredient.id}, Quantity: ${ingredient.quantity.amount} ${ingredient.quantity.unit} <br>`);
   return ingredients.join("");
+}
+
+function displayInstructions(recipe) {
+  let instructions = recipe.instructions.map(instruction => `- ${instruction.instruction} <br>`);
+  return instructions.join("");
 }
 
 function displayAllFilteredRecipesByTag() {

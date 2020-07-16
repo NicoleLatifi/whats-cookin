@@ -206,18 +206,16 @@ describe('Cookbook', () => {
     allRecipes = [recipe1, recipe2, recipe3];
     cookbook = new Cookbook(allRecipes, ingredients);
   });
+
   it('Should hold recipes', () => {
     expect(cookbook.allRecipes).to.equal(allRecipes);
   });
 
   it('Should be able to filter all recipes by tag', () => {
     expect(cookbook.filterAllRecipesByTag('sauce')).to.deep.equal([allRecipes[0], allRecipes[2]]);
-
   });
 
   it('Should be able to filter all recipes by ingredient', () => {
     expect(cookbook.filterAllRecipesByIngredient("eggs")).to.deep.equal([allRecipes[0]]);
-
   });
-
 });

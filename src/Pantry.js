@@ -20,9 +20,9 @@ class Pantry {
       return evaluatedIngredientList;
     }, this.userNeeds);
     if (this.userNeeds.length === 0) {
-      return "You have enough ingredients for this recipe"
+      return "Great! You have enough ingredients for this recipe"
     } else {
-      return "You do not have enough ingredients for this recipe"
+      return "Sorry, you do not have enough ingredients for this recipe"
     }
   }
 

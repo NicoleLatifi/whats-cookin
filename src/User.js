@@ -8,26 +8,15 @@ class User {
     this.allIngredients = ingredientsData;
   }
 
-  addFavoriteRecipe(recipe) {
-    if (this.favoriteRecipes.includes(recipe) === false) {
-      this.favoriteRecipes.push(recipe);  
+  addRecipe(recipe, savedRecipes) {
+    if (savedRecipes.includes(recipe) === false) {
+      savedRecipes.push(recipe);
     }
   }
 
-  removeFavoriteRecipe(recipe) {
-    let index = this.favoriteRecipes.indexOf(recipe);
-    this.favoriteRecipes.splice(index, 1);
-  }
-
-  addRecipeToCook(recipe) {
-    if (this.recipesToCook.includes(recipe) === false) {
-      this.recipesToCook.push(recipe);       
-    }
-  }
-
-  removeRecipeToCook(recipe) {
-    let index = this.recipesToCook.indexOf(recipe);
-    this.recipesToCook.splice(index, 1); 
+  removeRecipe(recipe, savedRecipes) {
+    let index = savedRecipes.indexOf(recipe);
+    savedRecipes.splice(index, 1);
   }
 
   filterFavoriteRecipesByTag(tag) {
@@ -45,9 +34,9 @@ class User {
         foundRecipes.push(recipe);
       }
       return foundRecipes;
-    }, []); 
+    }, []);
   }
-  
+
   filterFavoriteRecipesByName(name) {
     name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     return this.favoriteRecipes.reduce((foundRecipes, recipe) => {
@@ -57,7 +46,7 @@ class User {
       return foundRecipes;
     }, []);
   }
-  
+
   filterRecipesToCookByName(name) {
     name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     return this.recipesToCook.reduce((foundRecipes, recipe) => {
@@ -79,7 +68,7 @@ class User {
       return foundRecipes;
     }, []);
   }
-  
+
   filterRecipesToCookByIngredient(item) {
     const inputtedItemID = (this.allIngredients.find(ingredient => ingredient.name === item)).id
     return this.recipesToCook.reduce((foundRecipes, recipe) => {

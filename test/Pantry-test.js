@@ -109,7 +109,7 @@ describe('Pantry', () => {
   it('Should determine if it has ingredients for a recipe', () => {
     const result = userPantry.checkIngredients(userRecipe);
 
-    expect(result).to.equal("You do not have enough ingredients for this recipe");
+    expect(result).to.equal("Sorry, you do not have enough ingredients for this recipe");
   });
 
   it('Should determine amount of ingredients needed for a recipe', () => {

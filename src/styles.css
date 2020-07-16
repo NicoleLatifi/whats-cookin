@@ -11,25 +11,25 @@ body {
 
 /* BANNER */
 header {
+  background-color: #4f6d7a;
   display: flex;
   justify-content: space-between;
-  background-color: #4f6d7a;
   padding: 1em;
 }
 
 nav {
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
   background-color: #4f6d7a;
+  display: flex;
+  justify-content: flex-start;
   padding: 1em;
 }
 
 button {
-  margin: 1em 2.5em 1em 1em;
   background-color: #e8dab2;
   border: none;
   height: 2em;
+  margin: 1em 2.5em 1em 1em;
 }
 
 h4, .message {
@@ -43,26 +43,26 @@ h4, .message {
 }
 
 .banner-icons {
-  height: 2em;
-  width: 2em;
   background-color: #dd6e42;
   border-radius: 50%;
+  height: 2em;
   margin-right: -.5em;
+  width: 2em;
 }
 
 .banner-heart, .banner-frying-pan {
-  width: 1.5em;
   filter: invert(1);
   margin: .25em;
+  width: 1.5em;
 }
 
 /* MAIN PAGE */
 .main-page, .favorite-recipes, .recipes-to-cook {
   background-color: #c0d6df;
   display: grid;
+  grid-gap: 1em;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 1em;
   padding: 1em;
 }
 
@@ -100,11 +100,11 @@ div {
 
 /* RECIPE PAGE */
 .recipe-page {
+  background-color: #c0d6df;
   display: grid;
+  grid-gap: 1em;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr 1fr;
-  background-color: #c0d6df;
-  grid-gap: 1em;
   padding: 1em;
 }
 
@@ -114,27 +114,27 @@ div {
 }
 
 .recipe-page-name {
+  background-color: #eaeaea;
   grid-area: 2 / 1 / 3 / 2;
   padding: 1em;
-  background-color: #eaeaea
 }
 
 .tags {
+  background-color: #eaeaea;
   grid-area: 3 / 1 / 4 / 2;
   padding: 1em;
-  background-color: #eaeaea
 }
 
 .ingredients {
+  background-color: #eaeaea;
   grid-area: 1 / 2 / 2 / 3;
   padding: 1em;
-  background-color: #eaeaea
 }
 
 .instructions {
+  background-color: #eaeaea;
   grid-area: 2 / 2 / 4 / 3;
   padding: 1em;
-  background-color: #eaeaea
 }
 
 .hidden {
