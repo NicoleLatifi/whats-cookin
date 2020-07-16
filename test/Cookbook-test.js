@@ -5,8 +5,8 @@ const Recipe = require('../src/Recipe');
 
 describe('Cookbook', () => {
   let recipe1, recipe2, recipe3, ingredients, allRecipes, cookbook;
-	beforeEach(() => {
-		recipe1 = new Recipe({
+  beforeEach(() => {
+    recipe1 = new Recipe({
       "id": 1111,
       "image": "image",
       "ingredients": [
@@ -67,7 +67,7 @@ describe('Cookbook', () => {
         "main dish"
       ]
     });
-		recipe2 = new Recipe({
+    recipe2 = new Recipe({
       "id": 2222,
       "image": "image",
       "ingredients": [
@@ -118,12 +118,12 @@ describe('Cookbook', () => {
         "dinner"
       ]
     });
-		recipe3 = new Recipe({
+    recipe3 = new Recipe({
       "id": 3333,
       "image": "image",
       "ingredients": [
         {
-          "id": 00,
+          "id": 513,
           "quantity": {
             "amount": 5,
             "unit": "teaspoons"
@@ -149,75 +149,75 @@ describe('Cookbook', () => {
       ]
     });
     ingredients = [
-        {
-          "id": 11,
-          "name": "wheat flour",
-          "estimatedCostInCents": 142
-        },
-        {
-          "id": 22,
-          "name": "bicarbonate of soda",
-          "estimatedCostInCents": 582
-        },
-        {
-          "id": 1123,
-          "name": "eggs",
-          "estimatedCostInCents": 472
-        },
-        {
-          "id": 44,
-          "name": "sucrose",
-          "estimatedCostInCents": 902
-        },
-        {
-          "id": 55,
-          "name": "instant vanilla pudding",
-          "estimatedCostInCents": 660
-        },
-        {
-          "id": 66,
-          "name": "brown sugar",
-          "estimatedCostInCents": 559
-        },
-        {
-          "id": 77,
-          "name": "salt",
-          "estimatedCostInCents": 280
-        },
-        {
-          "id": 88,
-          "name": "fine sea salt",
-          "estimatedCostInCents": 528
-        },
-        {
-          "id": 99,
-          "name": "semi sweet chips",
-          "estimatedCostInCents": 253
-        },
-        {
-          "id": 00,
-          "name": "unsalted butter",
-          "estimatedCostInCents": 617
-        },
-        {
-          "estimatedCostInCents": 926
-        }
-      ];
+      {
+        "id": 11,
+        "name": "wheat flour",
+        "estimatedCostInCents": 142
+      },
+      {
+        "id": 22,
+        "name": "bicarbonate of soda",
+        "estimatedCostInCents": 582
+      },
+      {
+        "id": 1123,
+        "name": "eggs",
+        "estimatedCostInCents": 472
+      },
+      {
+        "id": 44,
+        "name": "sucrose",
+        "estimatedCostInCents": 902
+      },
+      {
+        "id": 55,
+        "name": "instant vanilla pudding",
+        "estimatedCostInCents": 660
+      },
+      {
+        "id": 66,
+        "name": "brown sugar",
+        "estimatedCostInCents": 559
+      },
+      {
+        "id": 77,
+        "name": "salt",
+        "estimatedCostInCents": 280
+      },
+      {
+        "id": 88,
+        "name": "fine sea salt",
+        "estimatedCostInCents": 528
+      },
+      {
+        "id": 99,
+        "name": "semi sweet chips",
+        "estimatedCostInCents": 253
+      },
+      {
+        "id": 513,
+        "name": "unsalted butter",
+        "estimatedCostInCents": 617
+      },
+      {
+        "estimatedCostInCents": 926
+      }
+    ];
     allRecipes = [recipe1, recipe2, recipe3];
     cookbook = new Cookbook(allRecipes, ingredients);
-	});
+  });
   it('Should hold recipes', () => {
     expect(cookbook.allRecipes).to.equal(allRecipes);
   });
 
   it('Should be able to filter all recipes by tag', () => {
     expect(cookbook.filterAllRecipesByTag('sauce')).to.deep.equal([allRecipes[0], allRecipes[2]]);
-    
+
   });
-    
+
   it('Should be able to filter all recipes by ingredient', () => {
     expect(cookbook.filterAllRecipesByIngredient("eggs")).to.deep.equal([allRecipes[0]]);
-    
+
   });
 
 });

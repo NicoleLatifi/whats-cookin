@@ -3,71 +3,71 @@ const expect = chai.expect;
 const Recipe = require('../src/Recipe');
 
 describe('Recipe', () => {
-	let recipe1;
-	beforeEach(() => {
-		recipe1 = new Recipe(
-			{
-				"id": 1111,
-				"image": "image",
-				"ingredients": [
-					{
-						"id": 11,
-						"quantity": {
-							"amount": 1.5,
-							"unit": "c"
-						}
-					},
-					{
-						"id": 22,
-						"quantity": {
-							"amount": 0.5,
-							"unit": "tsp"
-						}
-					},
-					{
-						"id": 1123,
-						"quantity": {
-							"amount": 1,
-							"unit": "large"
-						}
-					},
-					{
-						"id": 44,
-						"quantity": {
-							"amount": 1,
-							"unit": "large"
-						}
-					},
-					{
-						"id": 55,
-						"quantity": {
-							"amount": 0.5,
-							"unit": "c"
-						}
-					}
-				],
-				"instructions": [
-					{
-						"instruction": "Do the thing",
-						"number": 1
-					},
-					{
-						"instruction": "Then another thing",
-						"number": 2
-					},
-					{
-						"instruction": "Lastly, the thing",
-						"number": 3
-					},
-				],
-				"name": "Loaded Chocolate Chip Pudding Cookie Cups",
-				"tags": [
-					"lunch",
-					"sauce",
-					"main dish"
-				]
-			},
-			[
+  let recipe1;
+  beforeEach(() => {
+    recipe1 = new Recipe(
+      {
+        "id": 1111,
+        "image": "image",
+        "ingredients": [
+          {
+            "id": 11,
+            "quantity": {
+              "amount": 1.5,
+              "unit": "c"
+            }
+          },
+          {
+            "id": 22,
+            "quantity": {
+              "amount": 0.5,
+              "unit": "tsp"
+            }
+          },
+          {
+            "id": 1123,
+            "quantity": {
+              "amount": 1,
+              "unit": "large"
+            }
+          },
+          {
+            "id": 44,
+            "quantity": {
+              "amount": 1,
+              "unit": "large"
+            }
+          },
+          {
+            "id": 55,
+            "quantity": {
+              "amount": 0.5,
+              "unit": "c"
+            }
+          }
+        ],
+        "instructions": [
+          {
+            "instruction": "Do the thing",
+            "number": 1
+          },
+          {
+            "instruction": "Then another thing",
+            "number": 2
+          },
+          {
+            "instruction": "Lastly, the thing",
+            "number": 3
+          },
+        ],
+        "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+        "tags": [
+          "lunch",
+          "sauce",
+          "main dish"
+        ]
+      },
+      [
         {
           "id": 11,
           "name": "wheat flour",
@@ -114,7 +114,7 @@ describe('Recipe', () => {
           "estimatedCostInCents": 253
         },
         {
-          "id": 00,
+          "id": 513,
           "name": "unsalted butter",
           "estimatedCostInCents": 617
         },
@@ -122,21 +122,21 @@ describe('Recipe', () => {
           "estimatedCostInCents": 926
         }
       ]
-		)
-	});
-	it('Should instantiate a new recipe', () => {
-		expect(recipe1).to.be.an.instanceOf(Recipe);
-	});
+    )
+  });
+  it('Should instantiate a new recipe', () => {
+    expect(recipe1).to.be.an.instanceOf(Recipe);
+  });
 
-	it('Should be able to calculate the cost of ingredients', () => {
-		const total = recipe1.getTotalCost();
-		
-		expect(total).to.equal(2208);
-	});
+  it('Should be able to calculate the cost of ingredients', () => {
+    const total = recipe1.getTotalCost();
 
-	it('Should be able to get its instructions', () => {
-		const instructions = recipe1.getInstructions();
+    expect(total).to.equal(2208);
+  });
 
-		expect(instructions).to.equal(recipe1.instructions);
-	});
+  it('Should be able to get its instructions', () => {
+    const instructions = recipe1.getInstructions();
+
+    expect(instructions).to.equal(recipe1.instructions);
+  });
 });
