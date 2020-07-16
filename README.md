@@ -22,7 +22,7 @@ View single recipe page:
 
 Search functionality:
 
-<img src="http://g.recordit.co/bjdleCWeQX.gif" alt="Side dish is typed into search, go button clicked, filtered recipes are displayed" height=auto width=75%/>
+<img src="http://g.recordit.co/6VxXvfyqmt.gif" alt="Side dish is typed into search, go button clicked, filtered recipes are displayed" height=auto width=75%/>
 
 ## Install/Setup Instructions
 
