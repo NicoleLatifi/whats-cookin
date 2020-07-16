@@ -6,6 +6,8 @@ const pageTitle = document.querySelector("h3");
 const mainPage = document.querySelector(".main-page");
 const recipePage = document.querySelector(".recipe-page");
 const username = document.querySelector(".username");
+const searchField = document.querySelector(".search");
+const searchBar = document.querySelector(".search-bar");
 
 let allRecipes = [];
 let cookbook;
@@ -44,7 +46,9 @@ function clickHandler() {
     displayRecipesToCook();
 	} else if (event.target.classList.contains("recipe-name")) {
 		determineRecipeClicked();
-	}
+	} else if (event.target.classList.contains("go")) {
+		displayAllFilteredRecipesByTag();
+	};
 };
 
 //other functions
@@ -119,6 +123,10 @@ function determineRecipeClicked() {
 	});
 };
 
+function getSearchResults() {
+	return searchField.value;
+};
+
 //DOM manipulation
 function displayUsername() {
   username.innerText = `Username: ${user.name}`;
@@ -147,7 +155,8 @@ function displayAllRecipes() {
 };
 
 function displayMainPage() {
-  mainPage.classList.remove("hidden");
+	mainPage.classList.remove("hidden");
+	searchBar.classList.remove("hidden");
   favoriteRecipesPage.classList.add("hidden");
 	recipesToCookPage.classList.add("hidden");
 	recipePage.classList.add("hidden");
@@ -158,6 +167,7 @@ function displayFavoriteRecipes() {
   mainPage.classList.add("hidden");
   recipesToCookPage.classList.add("hidden");
 	recipePage.classList.add("hidden");
+	searchBar.classList.add("hidden");
 	favoriteRecipesPage.classList.remove("hidden");
   pageTitle.innerText = "Favorite Recipes";
   favoriteRecipesPage.innerHTML = ``;
@@ -183,6 +193,7 @@ function displayRecipesToCook() {
   mainPage.classList.add("hidden");
   favoriteRecipesPage.classList.add("hidden");
 	recipePage.classList.add("hidden");
+	searchBar.classList.add("hidden");
 	recipesToCookPage.classList.remove("hidden");
   pageTitle.innerText = "Recipes To Cook";
   recipesToCookPage.innerHTML = ``;
@@ -209,6 +220,7 @@ function displayRecipePage(recipe) {
 	mainPage.classList.add("hidden");
 	favoriteRecipesPage.classList.add("hidden");
 	recipesToCookPage.classList.add("hidden");
+	searchBar.classList.add("hidden");
 	recipePage.classList.remove("hidden");
 	pageTitle.innerText = "";
 	recipePage.innerHTML = `
@@ -233,4 +245,28 @@ function displayInstructions(recipe) {
 function displayIngredients(recipe) {
 	let ingredients = recipe.ingredients.map(ingredient => `- ${ingredient.id}, Quantity: ${ingredient.quantity.amount} ${ingredient.quantity.unit} <br>`);
 	return ingredients.join("");
+};
+
+function displayAllFilteredRecipesByTag() {
+	let searchInput = getSearchResults();
+	let filteredRecipes = cookbook.filterAllRecipesByTag(searchInput);
+	mainPage.innerHTML = ``;
+	filteredRecipes.forEach(recipe => {
+		determineTotalCost(recipe.id);
+		mainPage.innerHTML += `
+    <article class="recipe-card">
+      <img class="recipe-image" src="${recipe.image}" alt="${recipe.name}">
+      <section class="recipe-graphics">
+        <div class="">
+          <input type="image" src="../assets/heart.png" class="icon heart ${recipe.id}">
+        </div>
+        <div class="">
+          <input type="image" src="../assets/frying-pan.png" class="icon frying-pan ${recipe.id}">
+        </div>
+      </section>
+      <h4 class="recipe-name ${recipe.id}">${recipe.name}</h4>
+      <p class="message">This recipe costs $${totalCost}.</p>
+    </article>
+    `;
+	});
 };
